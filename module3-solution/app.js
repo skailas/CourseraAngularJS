@@ -39,7 +39,7 @@
 
         NarrowItDown.message = "";
         NarrowItDown.removeItem = removeItem;
-        NarrowItDown.searchTerm = "";
+        NarrowItDown.keyword = "";
         NarrowItDown.search = search;
         NarrowItDown.searchInProgress = false;
         NarrowItDown.shouldShowMessage = function() { return NarrowItDown.message && !NarrowItDown.searchInProgress; };
@@ -55,11 +55,11 @@
         }
 
         function search() {
-            if (NarrowItDown.searchTerm.trim().length > 0)
+            if (NarrowItDown.keyword.trim().length > 0)
             {
                 NarrowItDown.searchInProgress = true;
                 menuSearchService
-                .getMatchedMenuItems(NarrowItDown.searchTerm)
+                .getMatchedMenuItems(NarrowItDown.keyword)
                 .then(function(found) {
                     NarrowItDown.searchInProgress = false;
                     NarrowItDown.found = found;
@@ -86,14 +86,15 @@
 
         service.getMatchedMenuItems = getMatchedMenuItems;
 
-        function getMatchedMenuItems(searchTerm) {
+        function getMatchedMenuItems(keyword) {
 
             return $http({
                 method: "GET",
                 url: "https://davids-restaurant.herokuapp.com/menu_items.json"
             })
-            .then(function(response) {
-                return response.data.menu_items.filter(containsIn("description", searchTerm));
+            .then(function(result) {
+                var foundItems = result.data.menu_items.filter(containsIn("description", keyword));
+                return foundItems;
 
                 function containsIn(property, subStr) {
                     subStr = subStr.toLowerCase();
