@@ -1,4 +1,4 @@
-<table class="table" ng-if="dirCtrl.items.any()">
+<table class="table" ng-if="iFDC.items.any()">
     <thead>
         <tr>
             <th>Code</th>
@@ -8,11 +8,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in dirCtrl.items">
+        <tr ng-repeat="item in iFDC.items">
             <td>{{ item.short_name }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
-            <td><button ng-click="dirCtrl.onRemove({itemIndex: $index})" class="btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Don't want this one!</button></td>
+            <td><button ng-click="iFDC.onRemove({itemIndex: $index})" class="btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Don't want this one!</button></td>
         </tr>
     </tbody>
 </table>

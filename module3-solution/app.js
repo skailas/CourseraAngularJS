@@ -3,11 +3,10 @@
 
     angular
     .module("NarrowItDownApp", [])
-    .directive("foundItems", FoundItemsDirective)
-    .controller("FoundItemsDirectiveController", FoundItemsDirectiveController)
+    .directive("itemFound", itemFoundDirective)
+    .controller("itemFoundDirectiveController", itemFoundDirectiveController)
     .controller("NarrowItDownController", NarrowItDownController)
-    .service("MenuSearchService", MenuSearchService)
-    .constant("restaurantApiBaseUrl", "https://davids-restaurant.herokuapp.com");
+    .service("MenuSearchService", MenuSearchService);
 
 
     Array.prototype.any = function() {
@@ -15,74 +14,74 @@
     }
 
 
-    function FoundItemsDirective() {
+    function itemFoundDirective() {
         return {
             restrict: "E",
-            templateUrl: "found-items.html",
+            templateUrl: "itemFound.html",
             scope: {
                 items: "<",
                 onRemove: "&"
             },
-            controller: "FoundItemsDirectiveController as dirCtrl",
+            controller: "itemFoundDirectiveController as iFDC",
             bindToController: true
         };
     }
 
 
-    function FoundItemsDirectiveController() {
-        var dirCtrl = this;
+    function itemFoundDirectiveController() {
+        var iFDC = this;
     }
 
 
     NarrowItDownController.$inject = ["MenuSearchService"];
     function NarrowItDownController(menuSearchService) {
-        var narrowItDown = this;
+        var NarrowItDown = this;
 
-        narrowItDown.message = "";
-        narrowItDown.removeItem = removeItem;
-        narrowItDown.searchTerm = "";
-        narrowItDown.search = search;
-        narrowItDown.searchInProgress = false;
-        narrowItDown.shouldShowMessage = function() { return narrowItDown.message && !narrowItDown.searchInProgress; };
-        narrowItDown.found = null;
+        NarrowItDown.message = "";
+        NarrowItDown.removeItem = removeItem;
+        NarrowItDown.searchTerm = "";
+        NarrowItDown.search = search;
+        NarrowItDown.searchInProgress = false;
+        NarrowItDown.shouldShowMessage = function() { return NarrowItDown.message && !NarrowItDown.searchInProgress; };
+        NarrowItDown.found = null;
 
         function removeItem(itemIndex) {
-            if (narrowItDown.found !== null) {
-                narrowItDown.found.splice(itemIndex, 1);
-                if (!narrowItDown.found.any()) {
-                    narrowItDown.message = "Nothing remaining.";
+            if (NarrowItDown.found !== null) {
+                NarrowItDown.found.splice(itemIndex, 1);
+                if (!NarrowItDown.found.any()) {
+                    NarrowItDown.message = "Nothing remaining.";
                 }
             }
         }
 
         function search() {
-            if (narrowItDown.searchTerm.trim().length > 0)
+            if (NarrowItDown.searchTerm.trim().length > 0)
             {
-                narrowItDown.searchInProgress = true;
+                NarrowItDown.searchInProgress = true;
                 menuSearchService
-                .getMatchedMenuItems(narrowItDown.searchTerm)
+                .getMatchedMenuItems(NarrowItDown.searchTerm)
                 .then(function(found) {
-                    narrowItDown.searchInProgress = false;
-                    narrowItDown.found = found;
-                    narrowItDown.message = narrowItDown.found.any() ? "" : "Nothing found.";
+                    NarrowItDown.searchInProgress = false;
+                    NarrowItDown.found = found;
+                    NarrowItDown.message = NarrowItDown.found.any() ? "" : "Nothing found.";
                 })
                 .catch(function(error) {
-                    narrowItDown.searchInProgress = false;
-                    narrowItDown.found = null;
-                    narrowItDown.message = error.message;
+                    NarrowItDown.searchInProgress = false;
+                    NarrowItDown.found = null;
+                    NarrowItDown.message = error.message;
                 });
             }
             else
             {
-                narrowItDown.found = null;
-                narrowItDown.message = "Nothing found.";
+                NarrowItDown.found = null;
+                NarrowItDown.message = "Nothing found.";
             }
         }
     }
 
 
-    MenuSearchService.$inject = ["$http", "restaurantApiBaseUrl"];
-    function MenuSearchService($http, restaurantApiBaseUrl) {
+    MenuSearchService.$inject = ["$http"];
+    function MenuSearchService($http) {
         var service = this;
 
         service.getMatchedMenuItems = getMatchedMenuItems;
@@ -91,7 +90,7 @@
 
             return $http({
                 method: "GET",
-                url: restaurantApiBaseUrl + "/menu_items.json"
+                url: "https://davids-restaurant.herokuapp.com/menu_items.json"
             })
             .then(function(response) {
                 return response.data.menu_items.filter(containsIn("description", searchTerm));

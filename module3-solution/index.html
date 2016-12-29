@@ -10,20 +10,20 @@
     <script src="app.js"></script>
   </head>
 <body>
-   <div ng-controller="NarrowItDownController as narrowItDown" class="container">
+   <div ng-controller="NarrowItDownController as NarrowItDown" class="container">
 
     <h1>Narrow Down Your Chinese Menu Choice</h1>
     <form class="form-inline">
       <div class="form-group">
-        <input ng-model="narrowItDown.searchTerm" type="text" placeholder="search term" class="form-control">
+        <input ng-model="NarrowItDown.searchTerm" type="text" placeholder="search term" class="form-control">
       </div>
-      <button ng-click="narrowItDown.search()" class="btn btn-primary">Narrow It Down For Me!</button>
+      <button ng-click="NarrowItDown.search()" class="btn btn-primary">Narrow It Down For Me!</button>
     </form>
 
     <!-- found-items should be implemented as a component -->
-    <found-items items="narrowItDown.found" on-remove="narrowItDown.removeItem(itemIndex)"></found-items>
-    <div ng-if="narrowItDown.shouldShowMessage()" class="error">
-      {{ narrowItDown.message }}
+    <found-items items="NarrowItDown.found" on-remove="NarrowItDown.removeItem(itemIndex)"></found-items>
+    <div ng-if="NarrowItDown.shouldShowMessage()" class="error">
+      {{ NarrowItDown.message }}
     </div>
   </div>
 
