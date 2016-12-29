@@ -92,7 +92,7 @@
                 method: "GET",
                 url: "https://davids-restaurant.herokuapp.com/menu_items.json"
             })
-            .then(function(result) {
+            .then(function(response) {
                 var foundItems = result.data.menu_items.filter(containsIn("description", keyword));
                 return foundItems;
 
