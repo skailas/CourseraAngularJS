@@ -4,7 +4,6 @@
     angular
     .module("NarrowItDownApp", [])
     .directive("foundItems", FoundItemsDirective)
-    .directive("itemsLoaderIndicator", ItemsLoaderIndicatorDirective)
     .controller("FoundItemsDirectiveController", FoundItemsDirectiveController)
     .controller("NarrowItDownController", NarrowItDownController)
     .service("MenuSearchService", MenuSearchService)
@@ -13,14 +12,6 @@
 
     Array.prototype.any = function() {
         return this.length >= 1;
-    }
-
-
-    function ItemsLoaderIndicatorDirective() {
-        return {
-            restrict: "E",
-            templateUrl: "items-loader-indicator.html"
-        };
     }
 
 
@@ -52,7 +43,7 @@
         narrowItDown.searchTerm = "";
         narrowItDown.search = search;
         narrowItDown.searchInProgress = false;
-        narrowItDown.shouldShowMessage = function() { return narrowItDown.message && !narrowItDown.searchInProgress; }; 
+        narrowItDown.shouldShowMessage = function() { return narrowItDown.message && !narrowItDown.searchInProgress; };
         narrowItDown.found = null;
 
         function removeItem(itemIndex) {
