@@ -21,7 +21,7 @@
     </form>
 
     <!-- found-items should be implemented as a component -->
-    <found-items items="narrowItDown.found" on-remove="narrowItDown.removeItem(itemIndex)"></found-items>
+    <item-found items="narrowItDown.found" on-remove="narrowItDown.removeItem(itemIndex)"></item-found>
     <div ng-if="narrowItDown.shouldShowMessage()" class="error">
       {{ narrowItDown.message }}
     </div>
