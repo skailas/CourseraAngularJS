@@ -1,0 +1,23 @@
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    height: auto;
+}
+
+h2 {
+    font-size: 166%;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 133%;
+    font-weight: bold;
+}
+
+h3 small {
+    padding-left: 5px;
+    font-size: 75%;
+    font-weight: bold;
+}
