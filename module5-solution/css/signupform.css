@@ -1,0 +1,28 @@
+label {
+  color: black;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.successMessage {
+  color: green;
+  font-style: bold;
+  font-size: 3em;
+  border-color: green;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.form-class input.ng-invalid.ng-touched {
+  border-color: red;
+  border-width: 2px;
+  border-style: sold;
+}
+
+.form-class input.ng-valid.ng-touched {
+  border-color: green;
+  border-width: 2px;
+  border-style: sold;
+}

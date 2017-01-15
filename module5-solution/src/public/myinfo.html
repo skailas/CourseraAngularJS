@@ -1,0 +1,28 @@
+<div class="">
+  <div class="" align="center" ng-if="!ctrl.customer.registered">
+    <h1><b>Not Signed Up Yet. <a ui-sref="public.signup()"> Sign up Now!</a></b></h1>
+  </div>
+  <div class="" ng-if="ctrl.customer.registered">
+    <table>
+      <tr>
+        <td>Name: </td>
+        <td>{{ctrl.customer.firstName}} {{ctrl.customer.lastName}}</td>
+      </tr>
+      <tr>
+        <td>Email-Address:</td>
+        <td>{{ctrl.customer.emailAddress}}</td>
+      </tr>
+      <tr>
+        <td>Phonenumber:</td>
+        <td>{{ctrl.customer.phoneNumber}}</td>
+      </tr>
+      <tr>
+        <td>Favorite menu: </td>
+        <td>
+            <menu-item menu-item="ctrl.customer.menuItem"></menu-item>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</div>

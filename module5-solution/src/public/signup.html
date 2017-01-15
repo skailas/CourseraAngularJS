@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="css/signupform.css">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Registration Form</h3>
+  </div>
+  <form name="signupForm" novalidate="true" class="form-class">
+
+    <label for="firstName">First Name:</label>
+    <div class="input-group">
+      <input size="100" class="form-control" type="text" placeholder="Firstname" name="firstName" ng-model="ctrl.customer.firstName" required="true">
+      <span class="errorMessage" ng-if="signupForm.firstName.$error.required && signupForm.firstName.$touched">Firstname is missing!</span>
+    </div>
+    <br>
+    <label for="lastName">Last Name:</label>
+    <div class="input-group">
+      <input size="100" class="form-control" type="text" placeholder="Lastname" name="lastName" ng-model="ctrl.customer.lastName" required="true">
+      <span class="errorMessage" ng-if="signupForm.lastName.$error.required && signupForm.lastName.$touched">Lastname is missing!</span>
+    </div>
+    <br>
+    <label for="email">Email Address:</label>
+    <div class="input-group">
+      <input size="100" class="form-control" type="email" placeholder="Email-Address" name="emailAddress" ng-model="ctrl.customer.emailAddress" required="true">
+      <span class="errorMessage" ng-if="signupForm.emailAddress.$error.required && signupForm.emailAddress.$touched">Email is missing!</span>
+    </div>
+    <br>
+    <label for="phone">Phone:</label>
+    <div class="input-group">
+      <input size="100" class="form-control" type="phone" placeholder="Phonenumber" name="phoneNumber" ng-model="ctrl.customer.phoneNumber" required="true">
+      <span class="errorMessage" ng-if="signupForm.phoneNumber.$error.required && signupForm.phoneNumber.$touched">Phonenumber is missing!</span>
+    </div>
+    <br>
+    <label for="menuNumber">Menu Number:</label>
+    <div class="input-group">
+      <input size="100" class="form-control" type="text" placeholder="Menu number" name="menuNumber" ng-model="ctrl.customer.menuNumber" required="true">
+      <span class="errorMessage" ng-if="!ctrl.menuNumberExists && signupForm.menuNumber.$touched">No such menu number exists</span>
+    </div>
+    <br>
+
+    <div class="successMessage" ng-if="ctrl.customer.registered && !signupForm.$invalid">
+      <span>Registration was successfull! <p class="glyphicon glyphicon-ok"></p> </span>
+    </div>
+    <button class="form-control" type="button" name="Submit" ng-click="ctrl.submitForm()" ng-disabled="signupForm.$invalid">Submit</button>
+  </form>
+</div>
