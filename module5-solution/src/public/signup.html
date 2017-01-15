@@ -8,36 +8,36 @@
     <label for="firstName">First Name:</label>
     <div class="input-group">
       <input size="100" class="form-control" type="text" placeholder="First Name" name="firstName" ng-model="ctrl.customer.firstName" required="true">
-      <span class="errorMessage" ng-if="signupForm.firstName.$error.required && signupForm.firstName.$touched">Firstname is missing!</span>
+      <span class="errorMessage" ng-if="signupForm.firstName.$error.required && signupForm.firstName.$touched">First Name is needed</span>
     </div>
     <br>
     <label for="lastName">Last Name:</label>
     <div class="input-group">
       <input size="100" class="form-control" type="text" placeholder="Last Name" name="lastName" ng-model="ctrl.customer.lastName" required="true">
-      <span class="errorMessage" ng-if="signupForm.lastName.$error.required && signupForm.lastName.$touched">Lastname is missing!</span>
+      <span class="errorMessage" ng-if="signupForm.lastName.$error.required && signupForm.lastName.$touched">Last Name is needed</span>
     </div>
     <br>
     <label for="email">Email Address:</label>
     <div class="input-group">
       <input size="100" class="form-control" type="email" placeholder="Email Address" name="emailAddress" ng-model="ctrl.customer.emailAddress" required="true">
-      <span class="errorMessage" ng-if="signupForm.emailAddress.$error.required && signupForm.emailAddress.$touched">Email is missing!</span>
+      <span class="errorMessage" ng-if="signupForm.emailAddress.$error.required && signupForm.emailAddress.$touched">Email Address is needed</span>
     </div>
     <br>
     <label for="phone">Phone:</label>
     <div class="input-group">
-      <input size="100" class="form-control" type="phone" placeholder="Phone Number" name="phoneNumber" ng-model="ctrl.customer.phoneNumber" required="true">
-      <span class="errorMessage" ng-if="signupForm.phoneNumber.$error.required && signupForm.phoneNumber.$touched">Phonenumber is missing!</span>
+      <input size="100" class="form-control" type="phone" placeholder="Phone Number" name="phoneNumber" ng-model="ctrl.customer.phoneNumber" pattern="(\d{3})-(\d{3})-(\d{4})" required="true">
+      <span class="errorMessage" ng-if="signupForm.phoneNumber.$error.required && signupForm.phoneNumber.$touched">Phone Number is needed</span>
     </div>
     <br>
     <label for="menuNumber">Menu Number:</label>
     <div class="input-group">
       <input size="100" class="form-control" type="text" placeholder="Menu Number" name="menuNumber" ng-model="ctrl.customer.menuNumber" required="true">
-      <span class="errorMessage" ng-if="!ctrl.menuNumberExists && signupForm.menuNumber.$touched">No such menu number exists</span>
+      <span class="errorMessage" ng-if="!ctrl.menuNumberExists && signupForm.menuNumber.$touched">Menu Item is invalid</span>
     </div>
     <br>
 
     <div class="successMessage" ng-if="ctrl.customer.registered && !signupForm.$invalid">
-      <span>Registration was successfull! <p class="glyphicon glyphicon-ok"></p> </span>
+      <span>Registration Complete <p class="glyphicon glyphicon-ok"></p> </span>
     </div>
     <button class="form-control" type="button" name="Submit" ng-click="ctrl.submitForm()" ng-disabled="signupForm.$invalid">Submit</button>
   </form>
